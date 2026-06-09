@@ -1,0 +1,62 @@
+#include <iostream>
+#include <queue>
+using namespace std;
+
+int main() {
+    queue<string> orders;
+    int choice;
+    string item;
+
+    do {
+        cout << "\n===== FOOD ORDER MANAGEMENT SYSTEM =====\n";
+        cout << "1. Place Order\n";
+        cout << "2. Prepare Order\n";
+        cout << "3. Display Orders\n";
+        cout << "4. Exit\n";
+        cout << "Enter Choice: ";
+        cin >> choice;
+
+        switch(choice) {
+            case 1:
+                cout << "Enter Food Item: ";
+                cin >> item;
+                orders.push(item);
+                cout << "Order Placed Successfully!\n";
+                break;
+
+            case 2:
+                if(orders.empty()) {
+                    cout << "No Orders Available!\n";
+                } else {
+                    cout << "Preparing Order: "
+                         << orders.front() << endl;
+                    orders.pop();
+                }
+                break;
+
+            case 3:
+                if(orders.empty()) {
+                    cout << "No Pending Orders!\n";
+                } else {
+                    queue<string> temp = orders;
+
+                    cout << "\nPending Orders:\n";
+                    while(!temp.empty()) {
+                        cout << temp.front() << endl;
+                        temp.pop();
+                    }
+                }
+                break;
+
+            case 4:
+                cout << "Thank You!\n";
+                break;
+
+            default:
+                cout << "Invalid Choice!\n";
+        }
+
+    } while(choice != 4);
+
+    return 0;
+}
